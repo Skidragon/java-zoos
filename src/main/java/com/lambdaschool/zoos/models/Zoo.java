@@ -1,6 +1,10 @@
 package com.lambdaschool.zoos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="zoos")
@@ -12,9 +16,51 @@ public class Zoo {
 
     private String zooname;
 
-    //TODO create a many-to-many relationship with animal
+    @ManyToMany
+    @JoinTable(name = "zooanimals",
+    joinColumns = {@JoinColumn(name = "zooid")},
+    inverseJoinColumns = {@JoinColumn(name="animalid")})
+    @JsonIgnore
+    private Set<Animal> animals = new HashSet<>();
 
-    //TODO create a one-to-many relationship to telephone
+
+    @OneToMany(mappedBy = "zoo")
+    @JsonIgnore
+    private Set<Telephone> telephones = new HashSet<>();
+
+
     public Zoo() {
+    }
+
+    public long getZooid() {
+        return zooid;
+    }
+
+    public void setZooid(long zooid) {
+        this.zooid = zooid;
+    }
+
+    public String getZooname() {
+        return zooname;
+    }
+
+    public void setZooname(String zooname) {
+        this.zooname = zooname;
+    }
+
+    public Set<Animal> getAnimals() {
+        return animals;
+    }
+
+    public void setAnimals(Set<Animal> animals) {
+        this.animals = animals;
+    }
+
+    public Set<Telephone> getTelephones() {
+        return telephones;
+    }
+
+    public void setTelephones(Set<Telephone> telephones) {
+        this.telephones = telephones;
     }
 }

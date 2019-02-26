@@ -1,5 +1,7 @@
 package com.lambdaschool.zoos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,10 +16,44 @@ public class Telephone {
 
     private String phonenumber;
 
-    //TODO create a many-to-one relationship with zoo using zooid
-
+    @ManyToOne
+    @JoinColumn(name = "zooid")
+    @JsonIgnore
+    private Zoo zoo;
 
     //TODO remember the getters and setters once finished
     public Telephone() {
+    }
+
+    public long getPhoneid() {
+        return phoneid;
+    }
+
+    public void setPhoneid(long phoneid) {
+        this.phoneid = phoneid;
+    }
+
+    public String getPhonetype() {
+        return phonetype;
+    }
+
+    public void setPhonetype(String phonetype) {
+        this.phonetype = phonetype;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public Zoo getZoo() {
+        return zoo;
+    }
+
+    public void setZoo(Zoo zoo) {
+        this.zoo = zoo;
     }
 }
