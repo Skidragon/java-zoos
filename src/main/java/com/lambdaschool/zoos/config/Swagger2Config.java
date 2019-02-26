@@ -22,15 +22,15 @@ public class Swagger2Config
     {
         return new Docket(DocumentationType.SWAGGER_2).select()
                 .apis(RequestHandlerSelectors
-                        .basePackage("com.lambdaschool.ordersmysql.controllers")) //find your controller
+                        .basePackage("com.lambdaschool.zoos.controllers")) //find your controller
                 .paths(PathSelectors.regex("/.*"))
                 .build().apiInfo(apiEndPointsInfo());
     }
 
     private ApiInfo apiEndPointsInfo()
     {
-        return new ApiInfoBuilder().title("Agents, Customers, and Orders")
-                .description("Agent Man API")
+        return new ApiInfoBuilder().title("Zoos, Telephones, and Animals")
+                .description("Zoos API")
                 .contact(new Contact("Simon Davis", "simondavis.netlify.com", "simonfreelance1@gmail.com"))
                 .license("MIT")
                 .licenseUrl("https://github.com/Skidragon/java-orders-swagger?organization=Skidragon&organization=Skidragon")
