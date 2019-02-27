@@ -26,8 +26,9 @@ public class AdminController {
     @Autowired
     TelephoneRepository phoneRepo;
 
+
     @PutMapping("/zoos/{id}")
-    public Zoo updateCourseById(@RequestBody Zoo newZoo, @PathVariable long zooid) throws URISyntaxException {
+    public Zoo updateZooById(@RequestBody Zoo newZoo, @PathVariable long zooid) throws URISyntaxException {
         Optional<Zoo> updateZoo = zooRepo.findById(zooid);
 
         if(updateZoo.isPresent()) {
@@ -85,7 +86,11 @@ public class AdminController {
         return animalRepo.save(newAnimal);
     }
 
-    //TODO: POST /admin/zoos/animals - add the zooid, animalid combination to the zoo animals relations table
+//    //TODO: POST /admin/zoos/animals - add the zooid, animalid combination to the zoo animals relations table
+//    @PostMapping("/zoos/animals")
+//    public Animal createRelationBetweenZooAndAnimal(@RequestBody Object[] ids) {
+//
+//    }
 
 
     @DeleteMapping("/zoos/{id}")
@@ -125,9 +130,17 @@ public class AdminController {
         }
     }
 
-    /*TODO: DELETE /admin/zoos/{zooid}/animals/{animalid} - delete the zoo animal combination based off of ids.
-            Hint: @PathVariable("zooid", long zooid), @PathVariable("animalid") long animalid*/
-
+    @DeleteMapping("/zoos/{zooid}/animals/{animalid}")
+    public String deleteAnimalFromZoo(@PathVariable long zooid, @PathVariable long animalid) {
+        var foundZoo = zooRepo.findById(zooid);
+        if(foundZoo.isPresent()) {
+            zooRepo.deleteAnimalFromZoo(animalid);
+            return "Animal from zoo has been deleted";
+        }
+        else {
+            return null;
+        }
+    }
 
 }
 
