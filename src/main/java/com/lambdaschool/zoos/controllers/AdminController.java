@@ -70,6 +70,22 @@ public class AdminController {
             return null;
         }
     }
+    @PostMapping("/zoos")
+    public Zoo createNewZoo(@RequestBody Zoo newZoo) throws URISyntaxException {
+        return zooRepo.save(newZoo);
+    }
+
+    @PostMapping("/phones")
+    public Telephone createNewPhone(@RequestBody Telephone newPhone) throws URISyntaxException {
+        return phoneRepo.save(newPhone);
+    }
+
+    @PostMapping("/animals")
+    public Animal createNewAnimal(@RequestBody Animal newAnimal) throws URISyntaxException {
+        return animalRepo.save(newAnimal);
+    }
+
+
 
     @DeleteMapping("/zoos/{id}")
     public Zoo deleteZooById(@PathVariable long zooid) {
