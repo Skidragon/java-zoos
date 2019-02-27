@@ -1,6 +1,7 @@
 package com.lambdaschool.zoos.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,12 +21,11 @@ public class Zoo {
     @JoinTable(name = "zooanimals",
     joinColumns = {@JoinColumn(name = "zooid")},
     inverseJoinColumns = {@JoinColumn(name="animalid")})
-    @JsonIgnore
+    @JsonIgnoreProperties("zoos")
     private Set<Animal> animals = new HashSet<>();
 
 
     @OneToMany(mappedBy = "zoo")
-    @JsonIgnore
     private Set<Telephone> telephones = new HashSet<>();
 
 
