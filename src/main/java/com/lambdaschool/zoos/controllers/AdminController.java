@@ -85,6 +85,7 @@ public class AdminController {
         return animalRepo.save(newAnimal);
     }
 
+    //TODO: POST /admin/zoos/animals - add the zooid, animalid combination to the zoo animals relations table
 
 
     @DeleteMapping("/zoos/{id}")
@@ -123,6 +124,9 @@ public class AdminController {
             return null;
         }
     }
+
+    /*TODO: DELETE /admin/zoos/{zooid}/animals/{animalid} - delete the zoo animal combination based off of ids.
+            Hint: @PathVariable("zooid", long zooid), @PathVariable("animalid") long animalid*/
 
 
 }
