@@ -71,6 +71,44 @@ public class AdminController {
         }
     }
 
+    @DeleteMapping("/zoos/{id}")
+    public Zoo deleteZooById(@PathVariable long zooid) {
+        var foundZoo = zooRepo.findById(zooid);
+        if(foundZoo.isPresent()) {
+            zooRepo.deleteById(zooid);
+
+            return foundZoo.get();
+        }
+        else {
+            return null;
+        }
+    }
+    @DeleteMapping("/phones/{id}")
+    public Telephone deletePhoneById(@PathVariable long phoneid) {
+        var foundPhone = phoneRepo.findById(phoneid);
+        if(foundPhone.isPresent()) {
+            phoneRepo.deleteById(phoneid);
+
+            return foundPhone.get();
+        }
+        else {
+            return null;
+        }
+    }
+
+    @DeleteMapping("/animals/{id}")
+    public Animal deleteAnimalById(@PathVariable long animalid) {
+        var foundAnimal = animalRepo.findById(animalid);
+        if(foundAnimal.isPresent()) {
+            animalRepo.deleteById(animalid);
+            return foundAnimal.get();
+        }
+        else {
+            return null;
+        }
+    }
+
+
 }
 
 
