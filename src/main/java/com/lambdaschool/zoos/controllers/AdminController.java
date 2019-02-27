@@ -95,7 +95,7 @@ public class AdminController {
 
     @DeleteMapping("/zoos/{id}")
     public Zoo deleteZooById(@PathVariable long zooid) {
-        var foundZoo = zooRepo.findById(zooid);
+        Optional<Zoo> foundZoo = zooRepo.findById(zooid);
         if(foundZoo.isPresent()) {
             zooRepo.deleteById(zooid);
 

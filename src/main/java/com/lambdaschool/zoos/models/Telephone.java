@@ -21,7 +21,6 @@ public class Telephone {
     @JsonIgnore
     private Zoo zoo;
 
-    //TODO remember the getters and setters once finished
     public Telephone() {
     }
 
